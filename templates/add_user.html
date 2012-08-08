@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/main.css"/>
+</head>
+<body style="padding:30px;">
+<form action="/adduser_form" method="post">
+    <div><label>Name:<br>
+        <input name="name">
+    </label></div>
+    <div><label>email:<br>
+        <input name="email">
+    </label></div>
+    <div><label>password:<br>
+        <input name="password1">
+    </label></div>
+    <div><label>password:<br>
+        <input name="password2">
+    </label></div>
+    <div><input type="submit" value="Send"></div>
+</form>
+<p>
+    Error: {{ error }}
+    <a href="http://localhost:8080/adduser_form">Back</a>
+</p>
+{% for user in users %}
+    <p>
+        <span style="color:gray">Name: </span> {{ user.name }}<br>
+        <span style="color:gray">Email: </span>  {{ user.email }}<br>
+        <span style="color:gray">Password hash: </span>  {{ user.password }}<br>
+    </p>
+
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link type="text/css" rel="stylesheet" href="/css/main.css"/>
+    <title>GPS</title>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="/js/mylibs/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/js/mylibs/gpsData_test.js"></script>
+    <script type="text/javascript" src="/js/mylibs/for_google_script.js"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load('visualization', '1', {packages: ['corechart']});
+    </script>
+    
+</head>
+
+<body>
+<table id="maintable" width="100%" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td colspan="3" id="header">
+            <table height="100%" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr style="border:1px solid gray;">
+                    <td width="150px" >
+                        <div class="logo">
+                            GPS
+                        </div>
+                    </td>
+                    <td align="center" >
+                        <div  id="error">
+
+                        </div>
+                    </td>
+                    <td width="100px" align="right" style="padding-right:10px">
+                        {{ userNmae }}|
+                        <a href="/"> Out</a>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+    <tr>
+        <td id="sidebar" valign="top" style="padding-top:10px;">
+            <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td id="title_device" valign="top" style="background:#e3e2e2;padding-left:10px;"> Устройства:</td>
+                </tr>
+                <tr>
+                    <td id="devices" valign="top">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td id="title_stat" style="background:#e3e2e2;padding-left:10px;"> Статистика:</td>
+                </tr>
+                <tr>
+                    <td id="stat" valign="top" >
+
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" >
+
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+        
+        <td id="mapContainer">
+            <div id="statContainer">
+
+            </div>
+            <div id="maps">
+
+            </div>
+        </td>
+        <td id="mapMenu" valign="top">
+            <div id="map_menu" class="map_menu">
+                <div id="points" class="button_menu" >Points</div>
+                <div id="line" class="button_menu">Lines</div>
+                <div id="follow" class="button_menu">Follow</div>
+                <!--<div id="stopFollow" class="button_menu">StF</div>-->
+                <div id="statistic" class="button_menu">Statistic</div>
+                <!--<div id="map-yandex" class="button_menu">Y</div>-->
+            </div>
+        </td>
+    </tr>
+    <!-- <tr>
+     <td id="footer" colspan="2">&nbsp;</td>
+    </tr>-->
+</table>
+
+</body>
+</html>

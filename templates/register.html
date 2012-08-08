@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        html, body {
+            margin: 0; /*убираем отступы у документа, внешние…*/
+            padding: 0; /*…и внутренние*/
+            height: 100%; /*устанавливаем документу высоту в 100%*/
+        }
+
+        .form-wrapper {
+            width: 450px;
+            margin: 70px auto 0; /*border:1px solid #999999;*/
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px 6px 6px 6px;
+            box-shadow: 0 0 15px #999999; /*-moz-border-radius: 50px 0 0 50px;*/
+        }
+
+        .auth-form {
+            margin: 0px auto 0;
+
+        }
+
+        .label-text {
+            color: #999999;
+            font-family: Tahoma, Verdana, serif;
+            font-size: 14px; /*font-style:italic;*/
+        }
+
+        .input-value {
+            background: #fafafa;
+            border: 1px solid #eee;
+            font-size: 18px;
+            line-height: 20px;
+            margin: 0;
+            padding: 3px;
+            width: 440px;
+            color: #666666;
+        }
+
+        .input-value:focus {
+            border: 1px solid #999999;
+        }
+
+        input:focus {
+            outline: 0 none;
+        }
+
+        .sing-in-button {
+        /*background-color:#3399ff;    */
+            /*width: 90px;*/
+            height: 20px; /*border: 1px solid #999999;*/
+            padding-top: 3px;
+            padding-left:5px;
+            padding-right:5px;
+            border-radius: 5px 5px 5px 5px; /*padding: 3px;*/
+            font-family: Verdana, Tahoma, serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            float:right;
+
+            color: #666666;
+            box-shadow: 0 0 5px #999999;
+            background: #ffffff; /* Old browsers */
+            background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #dbdbdb 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(47%, #f6f6f6), color-stop(100%, #dbdbdb)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #dbdbdb 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #dbdbdb 100%); /* Opera11.10+ */
+            background: -ms-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #dbdbdb 100%); /* IE10+ */
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#DBDBDB', GradientType = 0); /* IE6-9 */
+            background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #dbdbdb 100%); /* W3C */
+
+        }
+
+        .sing-in-button:hover {
+            background-color: #cccccc;
+            box-shadow: 0 0 7px #2276E5;
+            cursor: pointer;
+        }
+
+        .project-name {
+            text-transform: uppercase;
+            font-family: Verdana, serif;
+            font-size: 27px;
+            margin: 0 auto 0;
+            padding-top: 40px;
+            width: 900px;
+            color: #666666;
+            text-align: center;
+            text-shadow: 1px 0px 0px #fff;
+        }
+
+        .developer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align:center;
+            font-family: Verdana, serif;
+            font-size: 12px;
+            color:#666666;
+            height: 30px;
+
+        }
+        .register-link{
+            text-decoration:none;
+            color:#0066cc;
+            font-family: Verdana, serif;
+            font-size: 12px;
+        }
+        .error-messenge{
+            color:red;
+            font-family: Verdana, serif;
+            font-size: 12px;
+            padding:10px;
+            background-color: #fff0ed;
+            border:1px solid red;
+            margin-bottom:10px;
+        }
+    </style>
+</head>
+<body style="background-color:#d7d7d7; height:100%;">
+<div class="project-name">РЕГИСТРАЦИЯ</div>
+<div class="form-wrapper">
+    {% if  error %}
+    <div class="error-messenge">Введенные данные не корректны</div>
+    {% endif %}
+    <form action="/register" method="post" id="authForm" class="auth-form">
+        <div><label class="label-text">Имя</label><br>
+            <input name="name" class="input-value">
+        </div>
+        <br>
+
+        <div><label class="label-text">Пароль</label><br>
+            <input type="password" name="password1" class="input-value">
+        </div>
+        <br>
+
+        <div><label class="label-text">Повторите пароль</label><br>
+            <input type="password" name="password2" class="input-value">
+        </div>
+        <br>
+        <a href="/" class="register-link">Войти</a>
+        <div class="sing-in-button" onclick="document.forms['authForm'].submit()">Зарегистрироваться</div>
+    </form>
+</div>
+
+<div class="developer">Лавров Дмитрий 2011</div>
+</body>
+</html>

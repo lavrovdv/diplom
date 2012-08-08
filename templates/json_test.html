@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="/js/mylibs/jquery-1.4.2.min.js"></script>
+    <script src="/js/mylibs/gpsData_test.js"></script>
+    <style>
+        body {
+            width: 600px;
+            margin: 2px auto
+        }
+
+        #example-4, #CurrentState, #TestSync {
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+
+        function getDataFromServer() {
+            jQuery.ajax({
+                type: 'GET',
+                url: 'json_data',                        // указываем URL и
+                data: 'data=1',
+                dataType : "json",                     // тип загружаемых данных
+                beforeSend: function() {
+                    $('#CurrentState').append('<p>Processing... </p>');
+                },
+                complete: function() {
+                    $('#CurrentState').append('<p>Complete</p>');
+                },
+                success: function (json) { // вешаем свой обработчик на функцию success
+
+                },
+                error : function (XMLHttpRequest, textStatus, errorThrown) {
+                    jQuery('#CurrentState').html('textStatus - ' + textStatus + '; errorThrown -' + errorThrown);
+                }
+            })
+        }
+        ;
+        var testGpsData = new GPSData(1);
+        var testDeviceData = new DevicesData();
+        jQuery(document).ready(
+                              function() {
+                                  $('#example-4').click(function() {
+                                      //getDataFromServer()
+                                      $('#example-4').append('<p>before</p>');
+
+                                      //testGpsData.getDataFromServer();
+                                      testGpsData.updateDataOnTimer();
+                                      var testReturnObject = testGpsData.getJsonObject();
+
+                                      $('#example-4').append('<p>testReturnObject ' + testReturnObject.ServerData.length + '</p>');
+                                      for (var i = 0; i < testReturnObject.ServerData.length; i++) {
+                                          $('#example-4').append('<p>' + testReturnObject.ServerData[i].GPS.date + '</p>' +
+                                                  '<p>' + testReturnObject.ServerData[i].GPS.latitude + '</p>' +
+                                                  '<p>' + testReturnObject.ServerData[i].GPS.longitude + '</p>' +
+                                                  '<p>' + testReturnObject.ServerData[i].GPS.speed + '</p>' +
+                                                  '<p>' + testReturnObject.ServerData[i].GPS.imei + '</p>' +
+                                                  '<p>-------------------------------------</p>');
+                                      }
+
+
+                                  });
+                                  $('#TestSync').click(function() {
+                                      //getDataFromServer()
+                                      $('#TestSync').append('<p>before</p>');
+                                      //testGpsData.stopTimer();
+                                      testDeviceData.getDevicesFromServerSync();
+                                      //var testReturnObject =  testDeviceData.getListDevice();
+                                      testDeviceData.loadGPSDataForDevice();
+
+                                      //$('#TestSync').append('<p>testDeviceData.listDevice.Device.length- '+ testDeviceData.listDevice.Device.length +'</p>');
+                                      //$('#TestSync').append('<p>testDeviceData.listGPSData[0].ServerData.length- '+ testDeviceData.listGPSData[0].jsonObject.ServerData.length +'</p>');
+                                      for (i = 0; i < testDeviceData.listDevice.Device.length; i++) {
+                                          for (var j = 0; j < testDeviceData.listGPSData[i].jsonObject.ServerData.length; j++) {
+                                              $('#TestSync').append('<p>' + testDeviceData.listGPSData[i].jsonObject.ServerData[j].GPS.date + '</p>' +
+                                                      '<p>' + testDeviceData.listGPSData[i].jsonObject.ServerData[j].GPS.latitude + '</p>' +
+                                                      '<p>' + testDeviceData.listGPSData[i].jsonObject.ServerData[j].GPS.longitude + '</p>' +
+                                                      '<p>' + testDeviceData.listGPSData[i].jsonObject.ServerData[j].GPS.speed + '</p>' +
+                                                      '<p>' + testDeviceData.listGPSData[i].jsonObject.ServerData[j].GPS.imei + '</p>' +
+                                                      '<p>-------------------------------------</p>');
+                                          }
+                                          $('#TestSync').append('<p>=======================================</p>');
+                                      }
+
+//                                      $('#TestSync').append('<p>after' + testReturnObject.Device.length + '</p>');
+//                                      for (var i = 0; i < testReturnObject.Device.length; i++) {
+//                                         $('#TestSync').append('<p>' + testReturnObject.Device[i].name + '</p>' +
+//                                                  '<p>' + testReturnObject.Device[i].imei + '</p>' +
+//                                                  '<p>-------------------------------------</p>');
+//
+//                                      }
+                                      $('#TestSync').append('<p>after</p>');
+
+                                  });
+                              });
+    </script>
+</head>
+
+<body>
+<script type="text/javascript">
+
+
+</script>
+<div class="example cursor" id="TestSync">TestSync</div>
+<div class="example cursor" id="CurrentState">Current State:</div>
+<div class="example cursor" id="example-4">Click to load JSON data</div>
+</body>
+</html>

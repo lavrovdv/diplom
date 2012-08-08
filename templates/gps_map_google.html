@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="/js/mylibs/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/js/mylibs/gpsData_test.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="/js/mylibs/for_google_script.js"></script>
+    <style>
+        .content {
+        }
+
+        .google_map {
+            border: 1px solid #999; /*background:#CCC;*/
+            width: 700px;
+            height: 400px;
+            float: left;
+        }
+
+        .map_menu {
+            float: left;
+
+        }
+
+        .button_menu {
+            border: 1px solid #06F;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .button_menu:hover {
+            background-color: #CCC;
+            cursor: pointer;
+        }
+    </style>
+
+    <title>gps</title>
+</head>
+
+<body>
+<script type="text/javascript">
+
+    /* $(document).ready(function(){
+     $("#points").click(function(){
+     //for (var i = 0; i < cordinate.length; i++) {
+     //var latlng = new GLatLng(cordinate[i][0],cordinate[i][0]);
+     map.addOverlay(new GMarker(latlng));
+     }
+     });*/
+    //document.write(cordinate[0][1]);
+</script>
+
+<div class="content">
+    <div id="google_map" class="google_map">
+    </div>
+    <div id="map_menu" class="map_menu">
+        <div id="points" class="button_menu">P</div>
+        <div id="line" class="button_menu">L</div>
+        <div id="follow" class="button_menu">F</div>
+        <div id="stopFollow" class="button_menu">SF</div>
+        <div id="map-google" class="button_menu">G</div>
+        <div id="map-yandex" class="button_menu">Y</div>
+    </div>
+</div>
+</body>
+</html>

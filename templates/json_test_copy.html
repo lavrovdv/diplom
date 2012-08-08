@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="/js/mylibs/jquery-1.4.2.min.js"></script>
+    <script src="/js/mylibs/gpsData_test.js"></script>
+    <style>
+        body {
+            width: 600px;
+            margin: 2px auto
+        }
+
+        #example-4 {
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        function getDataFromServer() {
+            jQuery.ajax({
+                type: 'GET',
+                url: 'json_data',                        // указываем URL и
+                data: 'data=1',
+                dataType : "json",                     // тип загружаемых данных
+                beforeSend: function() {
+                    $('#CurrentState').append('<p>Processing... </p>');
+                },
+                complete: function() {
+                    $('#CurrentState').append('<p>Complete</p>');
+                },
+                success: function (json) { // вешаем свой обработчик на функцию success
+                    $('#example-4').html(' ');
+                    for (i = 0; i < json.ServerData.length; i++) {
+                        $('#example-4').append('<p>' + json.ServerData[i].GPS.date + '</p>' +
+                                '<p>' + json.ServerData[i].GPS.latitude + '</p>' +
+                                '<p>' + json.ServerData[i].GPS.longitude + '</p>' +
+                                '<p>' + json.ServerData[i].GPS.speed + '</p>' +
+                                '<p>' + json.ServerData[i].GPS.imei + '</p>' +
+                                '<p>-------------------------------------</p>');
+                    }
+                },
+                error : function (XMLHttpRequest, textStatus, errorThrown) {
+                    jQuery('#CurrentState').html('textStatus - ' + textStatus + '; errorThrown -' + errorThrown);
+                }
+            })
+        };
+
+        jQuery(document).ready(
+                              function() {
+                                  $('#example-4').click(function() {
+                                      getDataFromServer()
+                                  });
+                              });
+    </script>
+</head>
+
+<body>
+<script type="text/javascript">
+
+    /*    jQuery(document).ready(
+
+     function() {
+     $('#example-4').click(getDataFromServer()
+     function() {
+     jQuery.ajax({
+     type: 'POST',
+     url: 'json_data',                        // указываем URL и
+     data: 'data=1',
+     dataType : "json",                     // тип загружаемых данных
+     beforeSend: function(){
+     $('#CurrentState').append('<p>Processing... </p>');
+     },
+     complete: function(){
+     $('#CurrentState').append('<p>Complete</p>');
+     },
+     success: function (json, textStatus) { // вешаем свой обработчик на функцию success
+     $('#example-4').html(' ');
+     for(i = 0; i < json.ServerData.length; i++){
+     $('#example-4').append('<p>' + json.ServerData[i].GPS.date + '</p>' +
+     '<p>' + json.ServerData[i].GPS.time + '</p>' +
+     '<p>' + json.ServerData[i].GPS.latitude + '</p>' +
+     '<p>' + json.ServerData[i].GPS.longitude + '</p>' +
+     '<p>' + json.ServerData[i].GPS.speed + '</p>' +
+     '<p>' + json.ServerData[i].app.userid + '</p>' +
+     '<p>-------------------------------------</p>');
+     }
+     },
+     error : function (XMLHttpRequest, textStatus, errorThrown) {
+     jQuery('#CurrentState').html('textStatus - ' + textStatus + '; errorThrown -' + errorThrown);
+     }
+     })}
+
+     );
+     });*/
+
+
+</script>
+<div class="example cursor" id="CurrentState">Current State:</div>
+<div class="example cursor" id="example-4">Click to load JSON data</div>
+</body>
+</html>
